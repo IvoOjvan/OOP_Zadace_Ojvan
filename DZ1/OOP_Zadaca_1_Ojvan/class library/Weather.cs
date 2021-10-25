@@ -38,7 +38,6 @@ namespace class_library
         public void SetWindSpeed(double windSpeed) { this.windSpeed = windSpeed; }
         public double GetWindSpeed() { return this.windSpeed; }
 
-        //uses air temperature and relative humidity, result: apparent temperature
         public double CalculateFeelsLikeTemperature()
         {
             double[] C = { -8.78469475556, 1.61139411, 2.33854883889, -0.14611605, -0.012308094, -0.0164248277778, 0.002211732, 0.00072546, -0.000003582};
