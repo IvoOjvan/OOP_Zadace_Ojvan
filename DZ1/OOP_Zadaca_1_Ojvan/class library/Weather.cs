@@ -29,14 +29,32 @@ namespace class_library
         #endregion
 
         #region Methods
-        public void SetTemperature(double temperature) { this.temperature = temperature; }
-        public double GetTemperature() { return this.temperature; }
+        public void SetTemperature(double temperature) 
+        { 
+            this.temperature = temperature; 
+        }
+        public double GetTemperature() 
+        { 
+            return this.temperature; 
+        }
 
-        public void SetHumidity(double humidity) { this.humidity = humidity; }
-        public double GetHumidity() { return this.humidity; }
+        public void SetHumidity(double humidity) 
+        { 
+            this.humidity = humidity; 
+        }
+        public double GetHumidity() 
+        { 
+            return this.humidity; 
+        }
 
-        public void SetWindSpeed(double windSpeed) { this.windSpeed = windSpeed; }
-        public double GetWindSpeed() { return this.windSpeed; }
+        public void SetWindSpeed(double windSpeed) 
+        { 
+            this.windSpeed = windSpeed; 
+        }
+        public double GetWindSpeed() 
+        { 
+            return this.windSpeed; 
+        }
 
         public double CalculateFeelsLikeTemperature()
         {
@@ -44,9 +62,9 @@ namespace class_library
             double T = this.temperature;
             double R = this.humidity;
 
-            double formula = C[0] + C[1]*T + C[2]*R + C[3]*T*R + C[4]*T*T + C[5]*R*R + C[6]*T*T*R + C[7]*T*R*R + C[8]*T*T*R*R;
+            double feelsLikeTemperature = C[0] + C[1]*T + C[2]*R + C[3]*T*R + C[4]*T*T + C[5]*R*R + C[6]*T*T*R + C[7]*T*R*R + C[8]*T*T*R*R;
             
-            return formula;
+            return feelsLikeTemperature;
         }
 
         public double CalculateWindChill()
@@ -54,12 +72,12 @@ namespace class_library
             double T = this.temperature;
             double V = this.windSpeed;
 
-            double formula = 13.12 + 0.6215 * T - 11.37 * Math.Pow(V, 0.16) + 0.3965 * T * Math.Pow(V, 0.16); 
+            double windChill = 13.12 + 0.6215 * T - 11.37 * Math.Pow(V, 0.16) + 0.3965 * T * Math.Pow(V, 0.16); 
 
             if (T > 10 || this.windSpeed < 4.8) 
                 return 0;
 
-            return formula;
+            return windChill;
         }
         #endregion
     }

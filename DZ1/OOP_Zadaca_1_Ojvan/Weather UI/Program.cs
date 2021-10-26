@@ -42,8 +42,11 @@ namespace Weather_UI
         private static Weather FindWeatherWithLargestWindchill(Weather[] weathers)
         {
             Weather LargestWindChillWeather = weathers[0];
+
             for (int i = 0; i < weathers.Length; i++)
-                if (LargestWindChillWeather.CalculateWindChill() < weathers[i].CalculateWindChill()) LargestWindChillWeather = weathers[i];
+                if (LargestWindChillWeather.CalculateWindChill() < weathers[i].CalculateWindChill()) 
+                        LargestWindChillWeather = weathers[i];
+
             return LargestWindChillWeather;
         }
 
