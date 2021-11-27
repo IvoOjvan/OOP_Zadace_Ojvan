@@ -45,6 +45,8 @@ namespace class_library
 
             return forecast; 
         }
+
+        public DailyForecast this[int index] => Week[index];
         #endregion
     }
 }

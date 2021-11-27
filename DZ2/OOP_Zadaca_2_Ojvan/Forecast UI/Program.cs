@@ -30,14 +30,13 @@ namespace Forecast_UI
             for (int i = 0; i < dailyForecasts.Length; i++)
             {
                 dailyForecasts[i] = ForecastUtilities.Parse(dailyWeatherInputs[i]);
-                //Console.WriteLine(dailyForecasts[i].GetAsString());
             }
 
             WeeklyForecast weeklyForecast = new WeeklyForecast(dailyForecasts);
             Console.WriteLine(weeklyForecast.GetAsString());
             Console.WriteLine("Maximal weekly temperature:");
             Console.WriteLine(weeklyForecast.GetMaxTemperature());
-            Console.WriteLine(weeklyForecast.Week[0].GetAsString());
+            Console.WriteLine(weeklyForecast[0].GetAsString());
         }
     }
 }
