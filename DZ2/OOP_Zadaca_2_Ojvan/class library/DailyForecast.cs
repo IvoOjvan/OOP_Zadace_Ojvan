@@ -24,9 +24,8 @@ namespace class_library
         {
             //inace ispisuje mjesec prije dana
             //{this.Day.Day}/{this.Day.Month}/{this.Day.Year} {this.Day.TimeOfDay}
-            return $"{this.Day.Day}/{this.Day.Month}/{this.Day.Year} {this.Day.TimeOfDay}°C, w={DayWeather.GetWindSpeed()}km/h, h={DayWeather.GetHumidity()}%";
+            return $"{Day.ToString("dd/MM/yyyy HH:mm:ss")}: {DayWeather.GetAsString()}";
         }
-
        
         #endregion
     }
