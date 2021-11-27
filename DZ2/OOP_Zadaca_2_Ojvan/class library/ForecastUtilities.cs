@@ -11,7 +11,7 @@ namespace class_library
         {
             string[] parts = dailyForecast.Split(",");
 
-            DateTime date = DateTime.ParseExact(parts[0], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            DateTime date = DateTime.ParseExact(parts[0], "dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentUICulture);
             Weather weather = new Weather(double.Parse(parts[1]), double.Parse(parts[3]), double.Parse(parts[2]));
 
             return new DailyForecast(date, weather);

@@ -22,8 +22,12 @@ namespace class_library
         #region Methods
         public string GetAsString()
         {
-            return $"{Day}: T={DayWeather.GetTemperature()}°C, w={DayWeather.GetWindSpeed()}km/h, h={DayWeather.GetHumidity()}%";
+            //inace ispisuje mjesec prije dana
+            //{this.Day.Day}/{this.Day.Month}/{this.Day.Year} {this.Day.TimeOfDay}
+            return $"{this.Day.Day}/{this.Day.Month}/{this.Day.Year} {this.Day.TimeOfDay}°C, w={DayWeather.GetWindSpeed()}km/h, h={DayWeather.GetHumidity()}%";
         }
+
+       
         #endregion
     }
 }
