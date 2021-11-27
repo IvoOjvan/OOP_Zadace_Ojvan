@@ -22,8 +22,6 @@ namespace class_library
         #region Methods
         public string GetAsString()
         {
-            //inace ispisuje mjesec prije dana
-            //{this.Day.Day}/{this.Day.Month}/{this.Day.Year} {this.Day.TimeOfDay}
             return $"{Day.ToString("dd/MM/yyyy HH:mm:ss")}: {DayWeather.GetAsString()}";
         }
        

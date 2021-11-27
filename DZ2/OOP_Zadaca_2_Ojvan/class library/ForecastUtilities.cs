@@ -17,7 +17,7 @@ namespace class_library
             return new DailyForecast(date, weather);
         }
 
-        private static Weather FindWeatherWithLargestWindchill(Weather[] weathers)
+        public static Weather FindWeatherWithLargestWindchill(Weather[] weathers)
         {
             Weather LargestWindChillWeather = weathers[0];
 
