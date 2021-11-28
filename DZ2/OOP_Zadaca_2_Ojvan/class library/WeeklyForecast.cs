@@ -35,15 +35,13 @@ namespace class_library
 
         public string GetAsString()
         {
-            string forecast = $"{Week[0].GetAsString()}\n" +
-                              $"{Week[1].GetAsString()}\n" +
-                              $"{Week[2].GetAsString()}\n" +
-                              $"{Week[3].GetAsString()}\n" +
-                              $"{Week[4].GetAsString()}\n" +
-                              $"{Week[5].GetAsString()}\n" +
-                              $"{Week[6].GetAsString()}";
+            StringBuilder forecast = new StringBuilder();
 
-            return forecast; 
+            for (int i = 0; i < Week.Length; i++) {
+                forecast.Append(Week[i].GetAsString() + "\n");
+            }
+
+            return forecast.ToString(); 
         }
 
         public DailyForecast this[int index] => Week[index];
