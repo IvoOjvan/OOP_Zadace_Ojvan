@@ -32,10 +32,10 @@ namespace class_library
                 weathersInfo.Append(weather.GetAsString() + "\n");
             }
 
+            Console.ForegroundColor = TextColor;
             Console.WriteLine(weathersInfo.ToString());
+            Console.ResetColor();
         }
-
-
         #endregion
     }
 }

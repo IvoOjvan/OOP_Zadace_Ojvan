@@ -21,15 +21,10 @@ namespace class_library
 
         public static void PrintWeathers(IPrinter[] printers, Weather[] weathers)
         {
-            ConsolePrinter consolePrinter = (ConsolePrinter)printers[0];
-            Console.ForegroundColor = consolePrinter.TextColor;
-
             foreach (IPrinter printer in printers)
             {
                 printer.Print(weathers);
             }
-
-            Console.ResetColor();
         }
     }
 }
