@@ -37,7 +37,6 @@ namespace class_library
             writer.WriteLine(weathersInfo.ToString());
             writer.Close();
         }
-
         #endregion
     }
 }
