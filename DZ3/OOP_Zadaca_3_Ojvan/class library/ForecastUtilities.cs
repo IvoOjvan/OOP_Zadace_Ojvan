@@ -23,18 +23,13 @@ namespace class_library
         {
             ConsolePrinter consolePrinter = (ConsolePrinter)printers[0];
             Console.ForegroundColor = consolePrinter.TextColor;
-   
-            FilePrinter filePrinter = (FilePrinter)printers[1];
-            StreamWriter writer = new StreamWriter(filePrinter.FileName);
 
-            foreach (Weather weather in weathers)
+            foreach (IPrinter printer in printers)
             {
-                Console.WriteLine(weather.GetAsString());
-                writer.WriteLine(weather.GetAsString());
+                printer.Print(weathers);
             }
 
             Console.ResetColor();
-            writer.Close();
         }
     }
 }

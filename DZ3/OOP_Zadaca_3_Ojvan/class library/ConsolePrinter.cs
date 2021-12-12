@@ -23,6 +23,18 @@ namespace class_library
             TextColor = color;
         }
 
+        public void Print(Weather[] weathers)
+        {
+            StringBuilder weathersInfo = new StringBuilder();
+
+            foreach (Weather weather in weathers) 
+            {
+                weathersInfo.Append(weather.GetAsString() + "\n");
+            }
+
+            Console.WriteLine(weathersInfo.ToString());
+        }
+
 
         #endregion
     }

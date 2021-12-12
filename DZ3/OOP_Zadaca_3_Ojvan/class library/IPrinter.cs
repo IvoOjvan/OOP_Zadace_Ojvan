@@ -6,6 +6,6 @@ namespace class_library
 {
     public interface IPrinter
     {
-        
+        public void Print(Weather[] weather);
     }
 }

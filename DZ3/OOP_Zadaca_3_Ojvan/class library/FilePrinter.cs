@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace class_library
@@ -22,6 +23,21 @@ namespace class_library
         {
             FileName = fileName;
         }
+
+        public void Print(Weather[] weathers)
+        {
+            StringBuilder weathersInfo = new StringBuilder();
+            StreamWriter writer = new StreamWriter(FileName);
+
+            foreach (Weather weather in weathers)
+            {
+                weathersInfo.Append(weather.GetAsString() + "\n");
+            }
+
+            writer.WriteLine(weathersInfo.ToString());
+            writer.Close();
+        }
+
         #endregion
     }
 }
