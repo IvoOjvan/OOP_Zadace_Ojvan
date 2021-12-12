@@ -25,7 +25,7 @@ namespace class_library
 
             if (probability <= 0.66) 
             {
-                return Generator.NextDouble() * ((upperBound / 2) - lowerBound) - lowerBound;
+                return Generator.NextDouble() * ((upperBound / 2) - lowerBound) + lowerBound;
             }
             else 
             {
