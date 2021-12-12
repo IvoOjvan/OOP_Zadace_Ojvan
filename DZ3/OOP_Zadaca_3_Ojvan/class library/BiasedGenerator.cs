@@ -27,10 +27,8 @@ namespace class_library
             {
                 return Generator.NextDouble() * ((upperBound / 2) - lowerBound) + lowerBound;
             }
-            else 
-            {
-                return Generator.NextDouble() * (upperBound - lowerBound) + lowerBound;
-            } 
+            
+            return Generator.NextDouble() * (upperBound - lowerBound) + lowerBound;
         }
         #endregion
     }
