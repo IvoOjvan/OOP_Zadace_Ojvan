@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "class library", "class library\class library.csproj", "{021FC34F-EB51-48A9-99C7-D3E8C78922B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forecast Repository UI", "Forecast Repository UI\Forecast Repository UI.csproj", "{EA636170-DC57-4055-B4A6-EADD9DE9DD59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{021FC34F-EB51-48A9-99C7-D3E8C78922B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021FC34F-EB51-48A9-99C7-D3E8C78922B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021FC34F-EB51-48A9-99C7-D3E8C78922B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021FC34F-EB51-48A9-99C7-D3E8C78922B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA636170-DC57-4055-B4A6-EADD9DE9DD59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA636170-DC57-4055-B4A6-EADD9DE9DD59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA636170-DC57-4055-B4A6-EADD9DE9DD59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA636170-DC57-4055-B4A6-EADD9DE9DD59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35D20540-E065-4913-8D6B-BA614025D078}
+	EndGlobalSection
+EndGlobal
