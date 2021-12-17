@@ -32,59 +32,82 @@ namespace class_library
         #region Methods
         public void Add(DailyForecast dailyForecast) 
         {
-            for (int i = dailyForecasts.Count - 1; i >= 0; i--) 
+            if (dailyForecasts.Count == 0)
             {
-                if (dailyForecasts[i].Day.Day.Equals(dailyForecast.Day.Day)) //ako je isti dan obriši jer ce kasnije ionako dodati
+                dailyForecasts.Add(dailyForecast);
+            }
+            else 
+            {
+                bool exists = new bool();
+                for (int i = dailyForecasts.Count - 1; i >= 0; i--) 
                 {
-                    dailyForecasts.RemoveAt(i);
+                    exists = false;
+                    if (dailyForecasts[i].Day.Date == dailyForecast.Day.Date)
+                    {
+                        dailyForecasts[i] = dailyForecast;
+                        exists = true;
+                    }
+                }
+
+                if (exists == false) 
+                {
+                    dailyForecasts.Add(dailyForecast);
                 }
             }
-            
-            dailyForecasts.Add(dailyForecast); 
-            
-            //mehanizam za sortiranje liste
+
             dailyForecasts = dailyForecasts.Where(p => p.Day != null)
                 .OrderBy(p => p.Day)
                 .ToList();
         }
 
-        public void Add(List<DailyForecast> dailyForecasts) 
+        public void Add(List<DailyForecast> forecasts) 
         {
-            //this.dailyForecasts.AddRange(dailyForecasts);
-            foreach (DailyForecast forecast in dailyForecasts) 
+            foreach (DailyForecast forecast in forecasts) 
             {
-                for (int i = dailyForecasts.Count - 1; i >= 0; i--)
+                bool exists = false;
+                for (int i = 0; i < dailyForecasts.Count; i++)
                 {
-                    if (this.dailyForecasts[i].Day.Day.Equals(forecast.Day.Day)) //ako je isti dan obriši jer ce kasnije ionako dodati
+                    if (dailyForecasts[i].Day.Date == forecast.Day.Date)
                     {
-                        this.dailyForecasts.RemoveAt(i);
+                        dailyForecasts[i] = forecast;
+                        exists = true;
                     }
                 }
 
-                this.dailyForecasts.Add(forecast);
+                if (exists == false) 
+                {
+                    dailyForecasts.Add(forecast);
+                }
             }
-            
-            //mehanizam za sortiranje liste
-            this.dailyForecasts = this.dailyForecasts.Where(p => p.Day != null)
+
+            dailyForecasts = dailyForecasts.Where(p => p.Day != null)
                 .OrderBy(p => p.Day)
                 .ToList();
         }
 
         public void Remove(DateTime date) 
         {
-            bool exists = false;
-            for (int i = dailyForecasts.Count - 1; i >= 0; i--) 
+            if (dailyForecasts.Count == 0)
             {
-                if (dailyForecasts[i].Day.Day.Equals(date.Day)) 
-                {
-                    dailyForecasts.RemoveAt(i);
-                    exists = true;
-                }
+                throw new NoSuchDailyWeatherException("Repository is empty!");
             }
-
-            if (exists == false) 
+            else
             {
-                throw new NoSuchDailyWeatherException($"No daily forecast for {date.ToString("dd.MM.yyyy. HH:mm:ss")}");
+                bool exists = new bool();
+                for (int i = dailyForecasts.Count - 1; i >= 0; i--) 
+                {
+                    exists = false;
+                    if (dailyForecasts[i].Day.Date == date.Date) 
+                    {
+                        dailyForecasts.RemoveAt(i);
+                        exists = true;
+                    }
+                }
+
+                if (exists == false) 
+                {
+                    throw new NoSuchDailyWeatherException($"No daily forecast for {date.ToString("dd.MM.yyyy. HH:mm:ss")}");
+                }
             }
         }
 
