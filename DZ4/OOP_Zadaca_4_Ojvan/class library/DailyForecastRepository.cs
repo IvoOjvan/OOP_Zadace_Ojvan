@@ -46,6 +46,7 @@ namespace class_library
                     {
                         dailyForecasts[i] = dailyForecast;
                         exists = true;
+                        break;
                     }
                 }
 

@@ -33,6 +33,7 @@ namespace class_library
         { 
             this.temperature = temperature; 
         }
+
         public double GetTemperature() 
         { 
             return this.temperature; 
@@ -42,6 +43,7 @@ namespace class_library
         { 
             this.humidity = humidity; 
         }
+
         public double GetHumidity() 
         { 
             return this.humidity; 
@@ -51,6 +53,7 @@ namespace class_library
         { 
             this.windSpeed = windSpeed; 
         }
+
         public double GetWindSpeed() 
         { 
             return this.windSpeed; 

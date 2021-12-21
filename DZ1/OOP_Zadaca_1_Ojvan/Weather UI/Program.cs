@@ -19,7 +19,7 @@ namespace Weather_UI
             Console.WriteLine("Feels like: " + current.CalculateFeelsLikeTemperature());
 
             Console.WriteLine("Finding weather info with largest windchill!");
-            const int Count = 5;
+            const int Count = 5; 
             double[] temperatures = new double[Count] { 8.33, -1.45, 5.00, 12.37, 7.67 };
             double[] humidities = new double[Count] { 0.3790, 0.4555, 0.743, 0.3750, 0.6612 };
             double[] windSpeeds = new double[Count] { 4.81, 1.5, 5.7, 4.9, 1.2 };
@@ -49,6 +49,5 @@ namespace Weather_UI
 
             return LargestWindChillWeather;
         }
-
     }
 }
