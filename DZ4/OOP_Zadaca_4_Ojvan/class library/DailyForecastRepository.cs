@@ -9,92 +9,85 @@ namespace class_library
     public class DailyForecastRepository : IEnumerable, IEnumerator
     {
         #region Properties
-        private List<DailyForecast> dailyForecasts;
-        private int position = -1;
+        private LinkedList<DailyForecast> dailyForecasts;
+        private LinkedListNode<DailyForecast> currentNode;
         #endregion
 
         #region Constructor
-        public DailyForecastRepository() 
+        public DailyForecastRepository()
         {
-            dailyForecasts = new List<DailyForecast>();
+            dailyForecasts = new LinkedList<DailyForecast>();
         }
 
-        public DailyForecastRepository(DailyForecastRepository repository) 
+        public DailyForecastRepository(DailyForecastRepository repository)
         {
-            dailyForecasts = new List<DailyForecast>();
-            foreach (DailyForecast forecast in repository.dailyForecasts) 
+            dailyForecasts = new LinkedList<DailyForecast>();
+            foreach (DailyForecast forecast in repository.dailyForecasts)
             {
-                dailyForecasts.Add(new DailyForecast(forecast.Day, forecast.DayWeather));
+                DailyForecast copyForecast = new DailyForecast(forecast.Day, forecast.DayWeather);
+                dailyForecasts.AddFirst(copyForecast);
             }
         }
         #endregion
 
         #region Methods
-        public void Add(DailyForecast dailyForecast) 
+        public void Add(DailyForecast dailyForecast)
         {
             if (dailyForecasts.Count == 0)
             {
-                dailyForecasts.Add(dailyForecast);
+                dailyForecasts.AddFirst(new LinkedListNode<DailyForecast>(dailyForecast));
             }
-            else 
+            else
             {
-                LinkedList<DailyForecast> linkedForecasts = new LinkedList<DailyForecast>(dailyForecasts);
-
-                if (linkedForecasts.Any(it => it.Day.Date == dailyForecast.Day.Date))
+                if (dailyForecasts.Any(it => it.Day.Date == dailyForecast.Day.Date))
                 {
-                    DailyForecast existingForecast = linkedForecasts.Single(it => it.Day.Date == dailyForecast.Day.Date);
-                    LinkedListNode<DailyForecast> existingNode = linkedForecasts.Find(existingForecast);
+                    DailyForecast existingForecast = dailyForecasts.Single(it => it.Day.Date == dailyForecast.Day.Date);
+                    LinkedListNode<DailyForecast> existingNode = dailyForecasts.Find(existingForecast);
                     existingNode.Value = dailyForecast;
                 }
-                else if (linkedForecasts.Any(it => it.Day.Date > dailyForecast.Day.Date))
+                else if (dailyForecasts.Any(it => it.Day.Date > dailyForecast.Day.Date))
                 {
                     //prvi manji datum i stavi ispred njega
-                    DailyForecast olderForecast = linkedForecasts.First(it => it.Day.Date > dailyForecast.Day.Date);
-                    LinkedListNode<DailyForecast> olderNode = linkedForecasts.Find(olderForecast);
-                    linkedForecasts.AddBefore(olderNode, dailyForecast);
+                    DailyForecast olderForecast = dailyForecasts.First(it => it.Day.Date > dailyForecast.Day.Date);
+                    LinkedListNode<DailyForecast> olderNode = dailyForecasts.Find(olderForecast);
+                    dailyForecasts.AddBefore(olderNode, dailyForecast);
                 }
-                else if(linkedForecasts.Any(it => it.Day.Date < dailyForecast.Day.Date))
+                else
                 {
                     //zadnji od najveceg datuma pa stavi poslje tog
-                    DailyForecast newerForecast = linkedForecasts.Last(it => it.Day.Date < dailyForecast.Day.Date);
-                    LinkedListNode<DailyForecast> newerNode = linkedForecasts.Find(newerForecast);
-                    linkedForecasts.AddAfter(newerNode, dailyForecast);
+                    DailyForecast newerForecast = dailyForecasts.Last(it => it.Day.Date < dailyForecast.Day.Date);
+                    LinkedListNode<DailyForecast> newerNode = dailyForecasts.Find(newerForecast);
+                    dailyForecasts.AddAfter(newerNode, dailyForecast);
                 }
-
-                dailyForecasts = linkedForecasts.ToList();
             }
         }
-
-        public void Add(List<DailyForecast> forecasts) 
+        public void Add(List<DailyForecast> forecasts)
         {
-            LinkedList<DailyForecast> linkedForecasts = new LinkedList<DailyForecast>(dailyForecasts);
-            foreach (DailyForecast forecast in forecasts) 
+            foreach (DailyForecast forecast in forecasts)
             {
-                if (linkedForecasts.Any(it => it.Day.Date == forecast.Day.Date))
+                if (dailyForecasts.Any(it => it.Day.Date == forecast.Day.Date))
                 {
-                    DailyForecast existingForecast = linkedForecasts.Single(it => it.Day.Date == forecast.Day.Date);
-                    LinkedListNode<DailyForecast> existingNode = linkedForecasts.Find(existingForecast);
+                    DailyForecast existingForecast = dailyForecasts.Single(it => it.Day.Date == forecast.Day.Date);
+                    LinkedListNode<DailyForecast> existingNode = dailyForecasts.Find(existingForecast);
                     existingNode.Value = forecast;
                 }
-                else if (linkedForecasts.Any(it => it.Day.Date > forecast.Day.Date))
+                else if (dailyForecasts.Any(it => it.Day.Date > forecast.Day.Date))
                 {
                     //prvi manji datum i stavi ispred njega
-                    DailyForecast olderForecast = linkedForecasts.First(it => it.Day.Date > forecast.Day.Date);
-                    LinkedListNode<DailyForecast> olderNode = linkedForecasts.Find(olderForecast);
-                    linkedForecasts.AddBefore(olderNode, forecast);
+                    DailyForecast olderForecast = dailyForecasts.First(it => it.Day.Date > forecast.Day.Date);
+                    LinkedListNode<DailyForecast> olderNode = dailyForecasts.Find(olderForecast);
+                    dailyForecasts.AddBefore(olderNode, forecast);
                 }
-                else if (linkedForecasts.Any(it => it.Day.Date < forecast.Day.Date))
+                else
                 {
                     //zadnji od najveceg datuma pa stavi poslje tog
-                    DailyForecast newerForecast = linkedForecasts.Last(it => it.Day.Date < forecast.Day.Date);
-                    LinkedListNode<DailyForecast> newerNode = linkedForecasts.Find(newerForecast);
-                    linkedForecasts.AddAfter(newerNode, forecast);
+                    DailyForecast newerForecast = dailyForecasts.Last(it => it.Day.Date < forecast.Day.Date);
+                    LinkedListNode<DailyForecast> newerNode = dailyForecasts.Find(newerForecast);
+                    dailyForecasts.AddAfter(newerNode, forecast);
                 }
             }
-            dailyForecasts = linkedForecasts.ToList();
         }
-
-        public void Remove(DateTime date) 
+        public void Remove(DateTime date)
         {
             if (dailyForecasts.Count == 0)
             {
@@ -102,60 +95,47 @@ namespace class_library
             }
             else
             {
-                /*bool exists = new bool();
-                for (int i = dailyForecasts.Count - 1; i >= 0; i--) 
+                if (dailyForecasts.Any(it => it.Day.Date == date.Date))
                 {
-                    exists = false;
-                    if (dailyForecasts[i].Day.Date == date.Date) 
-                    {
-                        dailyForecasts.RemoveAt(i);
-                        exists = true;
-                    }
+                    DailyForecast forecast = dailyForecasts.Single(it => it.Day.Date == date.Date);
+                    LinkedListNode<DailyForecast> toDelete = dailyForecasts.Find(forecast);
+                    dailyForecasts.Remove(toDelete);
                 }
-
-                if (exists == false) 
-                {
-                    throw new NoSuchDailyWeatherException($"No daily forecast for {date.ToString("dd.MM.yyyy. HH:mm:ss")}");
-                }*/
-                LinkedList<DailyForecast> linkedForecasts = new LinkedList<DailyForecast>(dailyForecasts);
-                if (linkedForecasts.Any(it => it.Day.Date == date.Date))
-                {
-                    DailyForecast forecast = linkedForecasts.Single(it => it.Day.Date == date.Date);
-                    LinkedListNode<DailyForecast> toDelete = linkedForecasts.Find(forecast);
-                    linkedForecasts.Remove(toDelete);
-                }
-                else 
+                else
                 {
                     throw new NoSuchDailyWeatherException($"No daily forecast for {date.ToString("dd.MM.yyyy. HH:mm:ss")}");
                 }
-
-                dailyForecasts = linkedForecasts.ToList();
             }
         }
 
         public IEnumerator GetEnumerator()
         {
-            return (IEnumerator)this;
+            foreach (DailyForecast forecast in dailyForecasts)
+            {
+                yield return forecast;
+            }
         }
 
         public bool MoveNext()
         {
-            position++;
-            return (position < dailyForecasts.Count);
+            if (currentNode != null)
+            {
+                currentNode = currentNode.Next;
+            }
+            return currentNode != null;
         }
 
         public void Reset()
         {
-            position = -1;
+            currentNode = dailyForecasts.First;
         }
-
-        public object Current => dailyForecasts[position];
+        public object Current => currentNode;
 
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            foreach (DailyForecast forecast in dailyForecasts) 
+            foreach (DailyForecast forecast in dailyForecasts)
             {
                 stringBuilder.Append(forecast.GetAsString() + "\n");
             }
