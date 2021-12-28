@@ -25,7 +25,7 @@ namespace class_library
             foreach (DailyForecast forecast in repository.dailyForecasts)
             {
                 DailyForecast copyForecast = new DailyForecast(forecast.Day, forecast.DayWeather);
-                dailyForecasts.AddFirst(copyForecast);
+                dailyForecasts.AddLast(copyForecast);
             }
         }
         #endregion
