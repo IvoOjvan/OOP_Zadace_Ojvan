@@ -110,10 +110,7 @@ namespace class_library
 
         public IEnumerator GetEnumerator()
         {
-            foreach (DailyForecast forecast in dailyForecasts)
-            {
-                yield return forecast;
-            }
+            return (IEnumerator)this;
         }
 
         public bool MoveNext()
