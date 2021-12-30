@@ -17,12 +17,6 @@ namespace class_library
             this.Day = day;
             this.DayWeather = dayWeather;
         }
-
-        public DailyForecast(LinkedListNode<DailyForecast> node) 
-        {
-            this.Day = node.Value.Day;
-            this.DayWeather = node.Value.DayWeather;
-        }
         #endregion
 
         #region Methods
