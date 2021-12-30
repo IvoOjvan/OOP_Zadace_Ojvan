@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace class_library
 {
-    public class DailyForecast
+    public class DailyForecast : IEquatable<DailyForecast>
     {
         #region Properties
         public DateTime Day { get; private set; }
@@ -24,7 +25,12 @@ namespace class_library
         {
             return $"{Day.ToString("dd.MM.yyyy. HH:mm:ss")}: {DayWeather.GetAsString()}";
         }
-       
+
+        public bool Equals([AllowNull] DailyForecast other)
+        {
+            return this == other;
+        }
+
         #endregion
     }
 }
