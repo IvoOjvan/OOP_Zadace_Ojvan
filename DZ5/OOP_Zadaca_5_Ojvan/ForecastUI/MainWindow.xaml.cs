@@ -90,9 +90,12 @@ namespace ForecastUI
             {
                 string[] tempValue = tempLabel.Content.ToString().Split("°");
 
-                double temp = double.Parse(tempValue[0]);
-                double tempInC = Math.Round((temp - 32),2) * 5/9;
-                tempLabel.Content = Math.Round(tempInC).ToString() + "°";
+                tempLabel.Content = ConvertToC(double.Parse(tempValue[0])) + "°";
+
+                string[] feelsValue = feelsLabel.Content.ToString().Split(" ");
+                feelsLabel.Content = "Feels like " + ConvertToC(double.Parse(feelsValue[2]))+ " °C";
+
+                ConvertForecastToC();
 
                 buttonToC.Foreground = Brushes.White;
                 buttonToC.FontSize = 35;
@@ -108,9 +111,14 @@ namespace ForecastUI
             {
                 string[] tempValue = tempLabel.Content.ToString().Split("°");
 
-                double temp = double.Parse(tempValue[0]);
-                double tempInF = Math.Round((temp * 1.8),2) + 32;
-                tempLabel.Content = Math.Round(tempInF).ToString() + "°";
+                tempLabel.Content = ConvertToF(double.Parse(tempValue[0])) + "°";
+
+                //
+                string[] feelsValue = feelsLabel.Content.ToString().Split(" ");
+                feelsLabel.Content = "Feels like " + ConvertToF(double.Parse(feelsValue[2])) + " °F";
+                //
+
+                ConvertForecastToF();
 
                 buttonToF.Foreground = Brushes.White;
                 buttonToF.FontSize = 35;
@@ -268,6 +276,58 @@ namespace ForecastUI
 
             image = new BitmapImage(new Uri("http://openweathermap.org/img/w/" + response.SelectToken("list[4].weather[0].icon") + ".png"));
             day5Icon.Source = image;
+        }
+
+        public double ConvertToC(double temp) 
+        {
+            return Math.Round((temp - 32) * 5 / 9);
+        }
+
+        public double ConvertToF(double temp) 
+        {
+            return Math.Round((temp * 1.8) + 32);
+        }
+
+        public void ConvertForecastToF() 
+        {
+            string day2Max = day2MaxTemp.Content.ToString();
+            string day2Min = day2MinTemp.Content.ToString();
+            string day3Max = day3MaxTemp.Content.ToString();
+            string day3Min = day3MinTemp.Content.ToString();
+            string day4Max = day4MaxTemp.Content.ToString();
+            string day4Min = day4MinTemp.Content.ToString();
+            string day5Max = day5MaxTemp.Content.ToString();
+            string day5Min = day5MinTemp.Content.ToString();
+
+            day2MinTemp.Content = ConvertToF(double.Parse(day2Min.Remove(day2Min.Length - 1))) + "°";
+            day2MaxTemp.Content = ConvertToF(double.Parse(day2Max.Remove(day2Max.Length - 1))) + "°";
+            day3MinTemp.Content = ConvertToF(double.Parse(day3Min.Remove(day3Min.Length - 1))) + "°";
+            day3MaxTemp.Content = ConvertToF(double.Parse(day3Max.Remove(day3Max.Length - 1))) + "°";
+            day4MinTemp.Content = ConvertToF(double.Parse(day4Min.Remove(day4Min.Length - 1))) + "°";
+            day4MaxTemp.Content = ConvertToF(double.Parse(day4Max.Remove(day4Max.Length - 1))) + "°";
+            day5MinTemp.Content = ConvertToF(double.Parse(day5Min.Remove(day5Min.Length - 1))) + "°";
+            day5MaxTemp.Content = ConvertToF(double.Parse(day5Max.Remove(day5Max.Length - 1))) + "°";
+        }
+
+        public void ConvertForecastToC()
+        {
+            string day2Max = day2MaxTemp.Content.ToString();
+            string day2Min = day2MinTemp.Content.ToString();
+            string day3Max = day3MaxTemp.Content.ToString();
+            string day3Min = day3MinTemp.Content.ToString();
+            string day4Max = day4MaxTemp.Content.ToString();
+            string day4Min = day4MinTemp.Content.ToString();
+            string day5Max = day5MaxTemp.Content.ToString();
+            string day5Min = day5MinTemp.Content.ToString();
+
+            day2MinTemp.Content = ConvertToC(double.Parse(day2Min.Remove(day2Min.Length - 1))) + "°";
+            day2MaxTemp.Content = ConvertToC(double.Parse(day2Max.Remove(day2Max.Length - 1))) + "°";
+            day3MinTemp.Content = ConvertToC(double.Parse(day3Min.Remove(day3Min.Length - 1))) + "°";
+            day3MaxTemp.Content = ConvertToC(double.Parse(day3Max.Remove(day3Max.Length - 1))) + "°";
+            day4MinTemp.Content = ConvertToC(double.Parse(day4Min.Remove(day4Min.Length - 1))) + "°";
+            day4MaxTemp.Content = ConvertToC(double.Parse(day4Max.Remove(day4Max.Length - 1))) + "°";
+            day5MinTemp.Content = ConvertToC(double.Parse(day5Min.Remove(day5Min.Length - 1))) + "°";
+            day5MaxTemp.Content = ConvertToC(double.Parse(day5Max.Remove(day5Max.Length - 1))) + "°";
         }
     }
 }

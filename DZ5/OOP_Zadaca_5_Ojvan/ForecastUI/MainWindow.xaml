@@ -46,7 +46,7 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <Button Name="btnSearch" Width="30" Height="30" HorizontalAlignment="Right" BorderBrush="#327AB5" Click="btnSearch_Click">
+            <Button Name="btnSearch" Width="30" Height="30" HorizontalAlignment="Right" BorderBrush="#327AB5" Click="btnSearch_Click" >
                 <StackPanel>
                     <Image Source="Icons/search.jpg"></Image>
                 </StackPanel>
@@ -69,8 +69,8 @@
             <Label Name="feelsLabel" Margin="631,23,143,242" Height="35" HorizontalContentAlignment="Left" Foreground="White" FontSize="20" FontFamily="Nunito">Feels like</Label>
             <Label Name="windLabel" Margin="631,118,143,147" Height="35" HorizontalContentAlignment="Left" FontSize="20" Foreground="White" Background="Transparent" FontFamily="Nunito">Wind speed</Label>
             <Label Name="humLabel" Margin="631,215,143,50" Height="35" HorizontalContentAlignment="Left" Foreground="White" FontSize="20" RenderTransformOrigin="1.82,0.587" FontFamily="Nunito">Humidity</Label>
-            <Button FontSize="35" Margin="438,78,520,165" Background="Transparent" Foreground="White" Name="buttonToC" Click="buttonToC_Click">C</Button>
-            <Button FontSize="25" Margin="438,140,521,103" Background="Transparent" Foreground="Wheat" Name="buttonToF" Click="buttonToF_Click">F</Button>
+            <Button BorderBrush="{x:Null}" FontSize="35" Margin="438,78,520,165" Background="Transparent" Foreground="White" Name="buttonToC" Click="buttonToC_Click">C</Button>
+            <Button BorderBrush="{x:Null}" FontSize="25" Margin="438,140,521,103" Background="Transparent" Foreground="Wheat" Name="buttonToF" Click="buttonToF_Click">F</Button>
         </Grid>
         <Grid Grid.Row="3" Width="200" Margin="57,0,743,0">
             <Label Name="day2Date" Content="Date" Foreground="White" FontSize="20" HorizontalAlignment="Center" Height="35" VerticalAlignment="Top" Margin="0,10,0,0"></Label>
