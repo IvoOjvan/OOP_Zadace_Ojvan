@@ -65,26 +65,7 @@ namespace class_library
         {
             foreach (DailyForecast forecast in forecasts)
             {
-                if (dailyForecasts.Any(it => it.Day.Date == forecast.Day.Date))
-                {
-                    DailyForecast existingForecast = dailyForecasts.Single(it => it.Day.Date == forecast.Day.Date);
-                    LinkedListNode<DailyForecast> existingNode = dailyForecasts.Find(existingForecast);
-                    existingNode.Value = forecast;
-                }
-                else if (dailyForecasts.Any(it => it.Day.Date > forecast.Day.Date))
-                {
-                    //prvi manji datum i stavi ispred njega
-                    DailyForecast olderForecast = dailyForecasts.First(it => it.Day.Date > forecast.Day.Date);
-                    LinkedListNode<DailyForecast> olderNode = dailyForecasts.Find(olderForecast);
-                    dailyForecasts.AddBefore(olderNode, forecast);
-                }
-                else
-                {
-                    //zadnji od najveceg datuma pa stavi poslje tog
-                    DailyForecast newerForecast = dailyForecasts.Last(it => it.Day.Date < forecast.Day.Date);
-                    LinkedListNode<DailyForecast> newerNode = dailyForecasts.Find(newerForecast);
-                    dailyForecasts.AddAfter(newerNode, forecast);
-                }
+                Add(forecast);
             }
         }
         public void Remove(DateTime date)
