@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\clouds.jpg" />
+    <None Remove="Icons\cloudy.png" />
+    <None Remove="Icons\rainy.png" />
+    <None Remove="Icons\search.jpg" />
+    <None Remove="Icons\searchIcon.JPG" />
+    <None Remove="Icons\snowy.png" />
+    <None Remove="Icons\sun-cloud.png" />
+    <None Remove="Icons\sunBg.jpg" />
+    <None Remove="Icons\sunny.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\clouds.jpg" />
+    <Resource Include="Icons\search.jpg" />
+    <Resource Include="Icons\searchIcon.JPG" />
+    <Resource Include="Icons\sunBg.jpg" />
+  </ItemGroup>
+
+</Project>
