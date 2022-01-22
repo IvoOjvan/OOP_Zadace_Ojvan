@@ -130,28 +130,35 @@ namespace ForecastUI
                     string json = r.ReadToEnd();
                     cityList = JsonConvert.DeserializeObject<List<City>>(json);
                 }
-                
-                int cityID = cityList.FindIndex(it => it.Name.ToLower() == cityTextBox.Text.ToLower());
-                
-                string query = String.Format("http://api.openweathermap.org/data/2.5/weather?id={0}&appid={1}&units=metric", cityList[cityID].ID, APP_ID);
-                JObject response = JObject.Parse(new System.Net.WebClient().DownloadString(query));
+                int cityID = 0;
+                if (cityTextBox.Text != "" && cityTextBox.Text != "Search" && cityList.Count(it => it.Name == cityTextBox.Text) != 0)
+                {
+                    cityID = cityList.FindIndex(it => it.Name.ToLower() == cityTextBox.Text.ToLower());
 
-                var objects = JsonConvert.DeserializeObject<APIWeatherInfo.root>(response.ToString());
-                APIWeatherInfo.root outPut = objects;
+                    string query = String.Format("http://api.openweathermap.org/data/2.5/weather?id={0}&appid={1}&units=metric", cityList[cityID].ID, APP_ID);
+                    JObject response = JObject.Parse(new System.Net.WebClient().DownloadString(query));
 
-                Weather weather = new Weather(outPut.main.temp, outPut.main.humidity / 100, outPut.wind.speed);
+                    var objects = JsonConvert.DeserializeObject<APIWeatherInfo.root>(response.ToString());
+                    APIWeatherInfo.root outPut = objects;
 
-                cityLabel.Content = outPut.name + $", {DateTime.Now.ToString("MMMM dd")}";
-                tempLabel.Content = Math.Round(outPut.main.temp) + "°";
-                windLabel.Content = $"Wind speed {Math.Round(outPut.wind.speed)} km/h";
-                humLabel.Content = $"Humidity {Math.Round(outPut.main.humidity)} %";
-                feelsLabel.Content = $"Feels like {Math.Round(weather.CalculateFeelsLikeTemperature())} °C";
-                sumLabel.Content = FirstToUpper(response.SelectToken("weather[0].description").ToString());
+                    Weather weather = new Weather(outPut.main.temp, outPut.main.humidity / 100, outPut.wind.speed);
 
-                BitmapImage image = new BitmapImage(new Uri("http://openweathermap.org/img/w/" + response.SelectToken("weather[0].icon") + ".png"));
-                weatherIcon.Source = image;
+                    cityLabel.Content = outPut.name + $", {DateTime.Now.ToString("MMMM dd")}";
+                    tempLabel.Content = Math.Round(outPut.main.temp) + "°";
+                    windLabel.Content = $"Wind speed {Math.Round(outPut.wind.speed)} km/h";
+                    humLabel.Content = $"Humidity {Math.Round(outPut.main.humidity)} %";
+                    feelsLabel.Content = $"Feels like {Math.Round(weather.CalculateFeelsLikeTemperature())} °C";
+                    sumLabel.Content = FirstToUpper(response.SelectToken("weather[0].description").ToString());
 
-                PopulateForecast(cityID);
+                    BitmapImage image = new BitmapImage(new Uri("http://openweathermap.org/img/w/" + response.SelectToken("weather[0].icon") + ".png"));
+                    weatherIcon.Source = image;
+
+                    PopulateForecast(cityID);
+                }
+                else
+                {
+                    MessageBox.Show("No such city!", "City error");
+                }
             }
         }
 
