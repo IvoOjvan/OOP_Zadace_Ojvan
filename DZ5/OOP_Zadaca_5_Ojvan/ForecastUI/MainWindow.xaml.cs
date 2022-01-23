@@ -29,7 +29,6 @@ namespace ForecastUI
             InitializeComponent();
             DefaultCity();
             DefaultForecast();
-            //PopulateForecast();
         }
 
         private void DefaultCity() 
@@ -133,7 +132,7 @@ namespace ForecastUI
             if (cityTextBox.Text != string.Empty) 
             {
                 List<City> cityList = new List<City>();
-                using (StreamReader r = new StreamReader("E:\\OOP\\Zadaće\\OOP_Zadace_Ojvan\\DZ5\\OOP_Zadaca_5_Ojvan\\ForecastUI\\JSON\\city.list.json"))
+                using (StreamReader r = new StreamReader("JSON/city.list.json"))
                 {
                     string json = r.ReadToEnd();
                     cityList = JsonConvert.DeserializeObject<List<City>>(json);
@@ -229,7 +228,7 @@ namespace ForecastUI
         public void PopulateForecast(int cityID) 
         {
             List<City> cityList = new List<City>();
-            using (StreamReader r = new StreamReader("E:\\OOP\\Zadaće\\OOP_Zadace_Ojvan\\DZ5\\OOP_Zadaca_5_Ojvan\\ForecastUI\\JSON\\city.list.json"))
+            using (StreamReader r = new StreamReader("JSON/city.list.json"))
             {
                 string json = r.ReadToEnd();
                 cityList = JsonConvert.DeserializeObject<List<City>>(json);

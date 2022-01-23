@@ -16,6 +16,7 @@
     <None Remove="Icons\sun-cloud.png" />
     <None Remove="Icons\sunBg.jpg" />
     <None Remove="Icons\sunny.png" />
+    <None Remove="JSON\city.list.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,9 @@
     <Resource Include="Icons\search.jpg" />
     <Resource Include="Icons\searchIcon.JPG" />
     <Resource Include="Icons\sunBg.jpg" />
+    <Content Include="JSON\city.list.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
