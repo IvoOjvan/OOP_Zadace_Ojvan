@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\appIcon.ico" />
     <None Remove="Icons\clouds.jpg" />
+    <None Remove="Icons\cloudy-day.ico" />
     <None Remove="Icons\cloudy.png" />
     <None Remove="Icons\rainy.png" />
     <None Remove="Icons\search.jpg" />
@@ -16,6 +18,7 @@
     <None Remove="Icons\sun-cloud.png" />
     <None Remove="Icons\sunBg.jpg" />
     <None Remove="Icons\sunny.png" />
+    <None Remove="Icons\weather-forecast.ico" />
     <None Remove="JSON\city.list.json" />
   </ItemGroup>
 
@@ -24,10 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Icons\clouds.jpg" />
+    <Resource Include="Icons\appIcon.ico" />
+    <Resource Include="Icons\cloudy-day.ico" />
     <Resource Include="Icons\search.jpg" />
-    <Resource Include="Icons\searchIcon.JPG" />
     <Resource Include="Icons\sunBg.jpg" />
+    <Resource Include="Icons\weather-forecast.ico" />
     <Content Include="JSON\city.list.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

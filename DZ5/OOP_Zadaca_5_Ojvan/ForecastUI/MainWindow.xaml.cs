@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,11 +25,12 @@ namespace ForecastUI
     public partial class MainWindow : Window
     {
         const string APP_ID = "64e752fb34d613672640d595ee04e60f";
+        CultureInfo cultureInfo = new CultureInfo("en-GB", true);
         public MainWindow()
         {
             InitializeComponent();
             DefaultCity();
-            DefaultForecast();
+            DefaultForecast();   
         }
 
         private void DefaultCity() 
@@ -42,8 +44,8 @@ namespace ForecastUI
             APIWeatherInfo.root outPut = objects;
 
             Weather weather = new Weather(outPut.main.temp, outPut.main.humidity / 100, outPut.wind.speed);
-
-            cityLabel.Content = outPut.name + $", {DateTime.Now.ToString("MMMM dd")}";
+            
+            cityLabel.Content = outPut.name + $", {DateTime.Now.ToString("MMMM dd", cultureInfo)}";
             tempLabel.Content = Math.Round(outPut.main.temp) + "°";
             windLabel.Content = $"Wind speed {Math.Round(outPut.wind.speed)} km/h";
             humLabel.Content = $"Humidity {Math.Round(outPut.main.humidity)} %";
@@ -112,10 +114,8 @@ namespace ForecastUI
 
                 tempLabel.Content = ConvertToF(double.Parse(tempValue[0])) + "°";
 
-                //
                 string[] feelsValue = feelsLabel.Content.ToString().Split(" ");
                 feelsLabel.Content = "Feels like " + ConvertToF(double.Parse(feelsValue[2])) + " °F";
-                //
 
                 ConvertForecastToF();
 
@@ -150,7 +150,7 @@ namespace ForecastUI
 
                     Weather weather = new Weather(outPut.main.temp, outPut.main.humidity / 100, outPut.wind.speed);
 
-                    cityLabel.Content = outPut.name + $", {DateTime.Now.ToString("MMMM dd")}";
+                    cityLabel.Content = outPut.name + $", {DateTime.Now.ToString("MMMM dd", cultureInfo)}";
                     tempLabel.Content = Math.Round(outPut.main.temp) + "°";
                     windLabel.Content = $"Wind speed {Math.Round(outPut.wind.speed)} km/h";
                     humLabel.Content = $"Humidity {Math.Round(outPut.main.humidity)} %";
@@ -161,6 +161,11 @@ namespace ForecastUI
                     weatherIcon.Source = image;
 
                     PopulateForecast(cityID);
+
+                    buttonToC.Foreground = Brushes.White;
+                    buttonToC.FontSize = 35;
+                    buttonToF.Foreground = Brushes.Wheat;
+                    buttonToF.FontSize = 25;
                 }
                 else
                 {
@@ -189,7 +194,7 @@ namespace ForecastUI
             APIForecast forecast = objects;
 
             //day 2
-            day2Date.Content = DateTime.Now.AddDays(1).ToString("MMMM dd");
+            day2Date.Content = DateTime.Now.AddDays(1).ToString("dddd", cultureInfo).Substring(0,3) + " " + DateTime.Now.AddDays(1).Day;
             day2MaxTemp.Content = Math.Round(forecast.list[1].main.temp_max) + "°";
             day2MinTemp.Content = Math.Round(forecast.list[1].main.temp_min) + "°";
             day2Summary.Content = forecast.list[1].weather[0].main;
@@ -198,7 +203,7 @@ namespace ForecastUI
             day2Icon.Source = image;
 
             //day 3
-            day3Date.Content = DateTime.Now.AddDays(2).ToString("MMMM dd");
+            day3Date.Content = DateTime.Now.AddDays(2).ToString("dddd", cultureInfo).Substring(0, 3) + " " + DateTime.Now.AddDays(2).Day;
             day3MaxTemp.Content = Math.Round(forecast.list[2].main.temp_max) + "°";
             day3MinTemp.Content = Math.Round(forecast.list[2].main.temp_min) + "°";
             day3Summary.Content = forecast.list[2].weather[0].main;
@@ -207,7 +212,7 @@ namespace ForecastUI
             day3Icon.Source = image;
 
             //day 4
-            day4Date.Content = DateTime.Now.AddDays(3).ToString("MMMM dd");
+            day4Date.Content = DateTime.Now.AddDays(3).ToString("dddd", cultureInfo).Substring(0, 3) + " " + DateTime.Now.AddDays(3).Day;
             day4MaxTemp.Content = Math.Round(forecast.list[3].main.temp_max) + "°";
             day4MinTemp.Content = Math.Round(forecast.list[3].main.temp_min) + "°";
             day4Summary.Content = forecast.list[3].weather[0].main;
@@ -216,7 +221,7 @@ namespace ForecastUI
             day4Icon.Source = image;
 
             //day5
-            day5Date.Content = DateTime.Now.AddDays(4).ToString("MMMM dd");
+            day5Date.Content = DateTime.Now.AddDays(4).ToString("dddd", cultureInfo).Substring(0, 3) + " " + DateTime.Now.AddDays(4).Day;
             day5MaxTemp.Content = Math.Round(forecast.list[4].main.temp_max) + "°";
             day5MinTemp.Content = Math.Round(forecast.list[4].main.temp_min) + "°";
             day5Summary.Content = forecast.list[1].weather[0].main;
@@ -241,7 +246,7 @@ namespace ForecastUI
             APIForecast forecast = objects;
 
             //day 2
-            day2Date.Content = DateTime.Now.AddDays(1).ToString("MMMM dd");
+            day2Date.Content = DateTime.Now.AddDays(1).ToString("dddd", cultureInfo).Substring(0, 3) + " " + DateTime.Now.AddDays(1).Day;
             day2MaxTemp.Content = Math.Round(forecast.list[1].main.temp_max) + "°";
             day2MinTemp.Content = Math.Round(forecast.list[1].main.temp_min) + "°";
             day2Summary.Content = forecast.list[1].weather[0].main;
@@ -250,7 +255,7 @@ namespace ForecastUI
             day2Icon.Source = image;
 
             //day 3
-            day3Date.Content = DateTime.Now.AddDays(2).ToString("MMMM dd");
+            day3Date.Content = DateTime.Now.AddDays(2).ToString("dddd", cultureInfo).Substring(0, 3) + " " + DateTime.Now.AddDays(2).Day;
             day3MaxTemp.Content = Math.Round(forecast.list[2].main.temp_max) + "°";
             day3MinTemp.Content = Math.Round(forecast.list[2].main.temp_min) + "°";
             day3Summary.Content = forecast.list[2].weather[0].main;
@@ -259,7 +264,7 @@ namespace ForecastUI
             day3Icon.Source = image;
 
             //day 4
-            day4Date.Content = DateTime.Now.AddDays(3).ToString("MMMM dd");
+            day4Date.Content = DateTime.Now.AddDays(3).ToString("dddd", cultureInfo).Substring(0, 3) + " " + DateTime.Now.AddDays(3).Day;
             day4MaxTemp.Content = Math.Round(forecast.list[3].main.temp_max) + "°";
             day4MinTemp.Content = Math.Round(forecast.list[3].main.temp_min) + "°";
             day4Summary.Content = forecast.list[3].weather[0].main;
@@ -268,7 +273,7 @@ namespace ForecastUI
             day4Icon.Source = image;
 
             //day5
-            day5Date.Content = DateTime.Now.AddDays(4).ToString("MMMM dd");
+            day5Date.Content = DateTime.Now.AddDays(4).ToString("dddd", cultureInfo).Substring(0, 3) + " " + DateTime.Now.AddDays(4).Day;
             day5MaxTemp.Content = Math.Round(forecast.list[4].main.temp_max) + "°";
             day5MinTemp.Content = Math.Round(forecast.list[4].main.temp_min) + "°";
             day5Summary.Content = forecast.list[1].weather[0].main;
